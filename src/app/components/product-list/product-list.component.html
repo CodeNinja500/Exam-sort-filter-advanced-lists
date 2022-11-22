@@ -1,0 +1,36 @@
+<h1>New Year Collection</h1>
+<h2>Choose your category</h2>
+<mat-selection-list role="list" fxLayout="row" [multiple]="false">
+  <mat-list-option role="listoption" *ngFor="let item of categories$ | async" [value]="item"
+                   (click)="changeCategory(item)">
+    {{item}}
+  </mat-list-option>
+</mat-selection-list>
+<mat-form-field appearance="fill">
+  <mat-label>Choose order</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let item of orders | async" [value]="item" (click)="changeOrder(item)">
+      {{item}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-card>
+  <mat-card-title>Clothes</mat-card-title>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item style="height: 100px" role="listitem" *ngFor="let item of products$ | async">
+        <img style="height: 100px" src="{{item.image}}">
+        <div>
+          {{item.title}}
+          <br>
+          {{item.price}}$
+          <br>
+          <button (click)="deleteProduct(item.id)">Remove</button>
+        </div>
+
+      </mat-list-item>
+      <br>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
